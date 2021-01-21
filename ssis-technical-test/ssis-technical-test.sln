@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29905.134
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "ssis-technical-test", "ssis-technical-test.dtproj", "{239FD658-3E1E-4D32-A454-ABFF83E7FA5F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Development|Default = Development|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{239FD658-3E1E-4D32-A454-ABFF83E7FA5F}.Development|Default.ActiveCfg = Development
+		{239FD658-3E1E-4D32-A454-ABFF83E7FA5F}.Development|Default.Build.0 = Development
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FE5764E8-0EA8-4175-94B9-F958B9613FA2}
+	EndGlobalSection
+EndGlobal
