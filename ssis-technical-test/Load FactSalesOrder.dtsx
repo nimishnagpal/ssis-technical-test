@@ -11,8 +11,8 @@
   DTS:LocaleID="2057"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="75"
-  DTS:VersionGUID="{7CDFC688-B2F8-46A4-8CF3-E26452D0BB1C}">
+  DTS:VersionBuild="90"
+  DTS:VersionGUID="{BFD101C3-6340-4D41-993D-783A8F589F45}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -32,7 +32,7 @@
           DTS:RowDelimiter=""
           DTS:TextQualifier="_x003C_none_x003E_"
           DTS:CodePage="1252"
-          DTS:ConnectionString="C:\\Users\\NimishN\\source\\repos\\ssis-technical-test\\fxrate.csv">
+          DTS:ConnectionString="C:\Users\NimishN\source\repos\ssis-technical-test\fxrate.csv">
           <DTS:FlatFileColumns>
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -87,11 +87,11 @@
             <DTS:Property
               DTS:Name="ServerPassword"
               Sensitive="1"
-              Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAACVorAh014USZV58ypYMh9gAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAAAQ6Gi4saa+w34ia9jIVElF6GqZ45c+oDVEc/UoMz9N4AAAAAAOgAAAAAIAACAAAAB8BSTeBpPdEzyEQKHxkcX4TF5O6X5bY9TYcJXWKN9XFxAAAABiSiE0LLcmU4ia5XXbuun/QAAAAGM5U00hysb/6VqiKVMtj7sAIJZpsYWrmdO2F9Uelf8X0LxCb3mG1eCqcv+6Ed+l+oHMBoZLbYlkL1dt9COd1tA</DTS:Property>
+              Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAACVorAh014USZV58ypYMh9gAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAAC5lK55zcLZs1B52GgBFNgryO0vrM4F2Z1V4/7XRIFSWwAAAAAOgAAAAAIAACAAAADP260HYhpaQhVL7yDCdsmYfyvgU2Su0vizYk8yI/83FxAAAABZCL2QEv0pB8cbkmyARr/IQAAAAO0XpGzZSdK++xNh7byki4RXjV2jVaOl5kKuzbQVLZ76pS+/nSRSkWJHxc//kAjWnET3iBzrM/pnnryQPKU9GhQ</DTS:Property>
             <DTS:Property
               DTS:Name="ProxyPassword"
               Sensitive="1"
-              Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAACVorAh014USZV58ypYMh9gAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAADtM1uGfdzkY+2tv1SBIoUZJSQeyFE5LeUPQ8PwcYRsYgAAAAAOgAAAAAIAACAAAAANStSMqrg8mHZ76wgrg6Ye9ah1Obi1IKBb+Uq7Qni4rxAAAAD3qPE61uD9aFcmQYrsd7m0QAAAAEX6lmqI/VPt7qx+m5ufhTvwnXOpRXvh9bYt+pl99NuFN6YxNOB3OsAGjUngKl1X/LS4pf0XvB9StjI0Lnk3KXc</DTS:Property>
+              Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAACVorAh014USZV58ypYMh9gAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAACgc/G3jEWfM69Gpv6ci/FdZopFaitparzH+tcYJLKubwAAAAAOgAAAAAIAACAAAACn5OshO0S6USERCIcD3EytRPMspUzu4EFyH/C77VRx5xAAAAAJdx/vGMoz9rGeOygHsLVsQAAAADcsI9yqZyxxS8/JIhpPFwTenFKNUZeZxh7B0Y8svYPZuMrWdzcbOiiskhgWXxQVE0uMRvNqLli7IyiV4y9dhUY</DTS:Property>
           </DTS:HttpConnection>
         </DTS:ConnectionManager>
       </DTS:ObjectData>
@@ -101,6 +101,10 @@
       DTS:CreationName="OLEDB"
       DTS:DTSID="{3F404394-C0F3-465A-9609-E23C064DE9AC}"
       DTS:ObjectName="localhost\SQLEXPRESS.AdventureWorks2016">
+      <DTS:PropertyExpression
+        DTS:Name="InitialCatalog">@[$Package::OLTPdatabase]</DTS:PropertyExpression>
+      <DTS:PropertyExpression
+        DTS:Name="ServerName">@[$Package::ServerName]</DTS:PropertyExpression>
       <DTS:ObjectData>
         <DTS:ConnectionManager
           DTS:ConnectionString="Data Source=localhost\SQLEXPRESS;Initial Catalog=AdventureWorks2016;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
@@ -111,23 +115,97 @@
       DTS:CreationName="OLEDB"
       DTS:DTSID="{67FE4213-2F90-4E5E-9037-1935BA370C1C}"
       DTS:ObjectName="localhost\SQLEXPRESS.AdventureWorksDW2016">
+      <DTS:PropertyExpression
+        DTS:Name="InitialCatalog">@[$Package::DWdatabase]</DTS:PropertyExpression>
+      <DTS:PropertyExpression
+        DTS:Name="ServerName">@[$Package::ServerName]</DTS:PropertyExpression>
       <DTS:ObjectData>
         <DTS:ConnectionManager
           DTS:ConnectionString="Data Source=localhost\SQLEXPRESS;Initial Catalog=AdventureWorksDW2016;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[log.xml]"
+      DTS:CreationName="FILE"
+      DTS:DelayValidation="True"
+      DTS:DTSID="{95CB5835-9D25-4A90-A33D-CABBAC8FDC67}"
+      DTS:ObjectName="log.xml">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[$Package::ProjectPath] + "\\logs\\log_" + (DT_WSTR,4)DATEPART("yyyy",GetDate()) +
+RIGHT("0" + (DT_WSTR,2)DATEPART("mm",GetDate()) ,2) +
+RIGHT("0" + (DT_WSTR,2)DATEPART("dd",GetDate()),2) + "_" +
+RIGHT("0" + (DT_WSTR,2)DATEPART("hh",GetDate()),2)+
+RIGHT("0" + (DT_WSTR,2)DATEPART("mi",GetDate()),2) + ".xml"</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:FileUsageType="1"
+          DTS:ConnectionString="C:\Users\NimishN\source\repos\ssis-technical-test\logs\log_20210121_1720.xml" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
   </DTS:ConnectionManagers>
+  <DTS:LogProviders>
+    <DTS:LogProvider
+      DTS:ConfigString="log.xml"
+      DTS:CreationName="Microsoft.LogProviderXMLFile"
+      DTS:Description="Writes log entries for events to an XML file"
+      DTS:DTSID="{7B3CD79A-DE67-4153-AB2D-C0B88F970A16}"
+      DTS:ObjectName="SSIS log provider for XML files">
+      <DTS:ObjectData>
+        <InnerObject />
+      </DTS:ObjectData>
+    </DTS:LogProvider>
+  </DTS:LogProviders>
+  <DTS:PackageParameters>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="8"
+      DTS:DTSID="{EF439164-C4A3-4D6F-8706-FAE7F3C66FCD}"
+      DTS:ObjectName="DWdatabase">
+      <DTS:Property
+        DTS:DataType="8"
+        DTS:Name="ParameterValue">AdventureWorksDW2016</DTS:Property>
+    </DTS:PackageParameter>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="8"
+      DTS:DTSID="{9DF2E03B-B6EE-4026-8588-1EC6593E7450}"
+      DTS:ObjectName="OLTPdatabase">
+      <DTS:Property
+        DTS:DataType="8"
+        DTS:Name="ParameterValue">AdventureWorks2016</DTS:Property>
+    </DTS:PackageParameter>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="8"
+      DTS:Description="The path to the directory where the Package is placed."
+      DTS:DTSID="{AEF4593C-3A16-4315-9C3F-6A5F525699F4}"
+      DTS:ObjectName="ProjectPath"
+      DTS:Required="True">
+      <DTS:Property
+        DTS:DataType="8"
+        DTS:Name="ParameterValue">C:\Users\NimishN\source\repos\ssis-technical-test</DTS:Property>
+    </DTS:PackageParameter>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="8"
+      DTS:DTSID="{DA43FF25-B045-4170-BAE7-3DEDCD3F5193}"
+      DTS:ObjectName="ServerName">
+      <DTS:Property
+        DTS:DataType="8"
+        DTS:Name="ParameterValue">localhost\SQLEXPRESS</DTS:Property>
+    </DTS:PackageParameter>
+  </DTS:PackageParameters>
   <DTS:Variables>
     <DTS:Variable
       DTS:CreationName=""
       DTS:DTSID="{2D1767A4-8D56-4585-BBF2-C96759D67C0F}"
       DTS:EvaluateAsExpression="True"
-      DTS:Expression="SUBSTRING( @[User::PathOutput] , FINDSTRING( @[User::PathOutput] , &quot;C:&quot;,1), FINDSTRING( @[User::PathOutput] , &quot;.csv&quot;,1)+3)"
+      DTS:Expression="@[$Package::ProjectPath] + &quot;\\fxrate.csv&quot;"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="FXRateCSVPath">
       <DTS:VariableValue
-        DTS:DataType="8">C:\\Users\\NimishN\\source\\repos\\ssis-technical-test\\fxrate.csv</DTS:VariableValue>
+        DTS:DataType="8">C:\Users\NimishN\source\repos\ssis-technical-test\fxrate.csv</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
@@ -168,13 +246,23 @@
     <DTS:Variable
       DTS:CreationName=""
       DTS:DTSID="{04A5E92F-029A-4B2F-9FB8-44050A5E9F92}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="@[$Package::ProjectPath] + &quot;\\GetFXRate.ps1&quot;"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
-      DTS:ObjectName="PathOutput">
+      DTS:ObjectName="GetFXRatePath">
       <DTS:VariableValue
-        DTS:DataType="8">C:\\Users\\NimishN\\source\\repos\\ssis-technical-test\\fxrate.csv\r\n</DTS:VariableValue>
+        DTS:DataType="8">C:\Users\NimishN\source\repos\ssis-technical-test\GetFXRate.ps1</DTS:VariableValue>
     </DTS:Variable>
   </DTS:Variables>
+  <DTS:LoggingOptions
+    DTS:FilterKind="0"
+    DTS:LoggingMode="1">
+    <DTS:SelectedLogProviders>
+      <DTS:SelectedLogProvider
+        DTS:InstanceID="{7B3CD79A-DE67-4153-AB2D-C0B88F970A16}" />
+    </DTS:SelectedLogProviders>
+  </DTS:LoggingOptions>
   <DTS:Executables>
     <DTS:Executable
       DTS:refId="Package\GET exchange rates from API"
@@ -187,12 +275,56 @@
       DTS:TaskContact="Execute Process Task;Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
       DTS:ThreadHint="0">
       <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0"
+        DTS:LoggingMode="1">
+        <DTS:Property
+          DTS:DataType="8"
+          DTS:Name="EventFilter">2,7,OnError,9,OnWarning</DTS:Property>
+        <DTS:Property
+          DTS:EventName="OnError"
+          DTS:Name="ColumnFilter">
+          <DTS:Property
+            DTS:Name="Computer">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="Operator">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceName">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="ExecutionID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="MessageText">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="DataBytes">-1</DTS:Property>
+        </DTS:Property>
+        <DTS:Property
+          DTS:EventName="OnWarning"
+          DTS:Name="ColumnFilter">
+          <DTS:Property
+            DTS:Name="Computer">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="Operator">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceName">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="ExecutionID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="MessageText">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="DataBytes">-1</DTS:Property>
+        </DTS:Property>
+      </DTS:LoggingOptions>
+      <DTS:PropertyExpression
+        DTS:Name="Arguments">"-ExecutionPolicy Bypass -File \"" + @[User::GetFXRatePath] + "\""</DTS:PropertyExpression>
       <DTS:ObjectData>
         <ExecuteProcessData
           Executable="powershell.exe"
-          Arguments="-ExecutionPolicy Bypass -File &quot;C:\Users\NimishN\source\repos\ssis-technical-test\GetFXRate.ps1&quot; "
-          FailTaskIfReturnCodeIsNotSuccessValue="False"
-          StandardOutputVariable="User::PathOutput" />
+          Arguments="-ExecutionPolicy Bypass -File &quot;C:\Users\NimishN\source\repos\ssis-technical-test\GetFXRate.ps1&quot;"
+          FailTaskIfReturnCodeIsNotSuccessValue="False" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
@@ -205,6 +337,49 @@
       DTS:ObjectName="Load FactSalesOrder"
       DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
       <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0"
+        DTS:LoggingMode="1">
+        <DTS:Property
+          DTS:DataType="8"
+          DTS:Name="EventFilter">2,7,OnError,9,OnWarning</DTS:Property>
+        <DTS:Property
+          DTS:EventName="OnError"
+          DTS:Name="ColumnFilter">
+          <DTS:Property
+            DTS:Name="Computer">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="Operator">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceName">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="ExecutionID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="MessageText">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="DataBytes">-1</DTS:Property>
+        </DTS:Property>
+        <DTS:Property
+          DTS:EventName="OnWarning"
+          DTS:Name="ColumnFilter">
+          <DTS:Property
+            DTS:Name="Computer">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="Operator">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceName">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="ExecutionID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="MessageText">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="DataBytes">-1</DTS:Property>
+        </DTS:Property>
+      </DTS:LoggingOptions>
       <DTS:EventHandlers>
         <DTS:EventHandler
           DTS:refId="Package\Load FactSalesOrder.EventHandlers[OnPreValidate]"
@@ -519,6 +694,7 @@
               description="OLE DB Destination"
               name="Destination FactSalesOrder"
               usesDispositions="true"
+              validateExternalMetadata="False"
               version="4">
               <properties>
                 <property
@@ -1752,6 +1928,7 @@
               description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
               name="Look Up for updates"
               usesDispositions="true"
+              validateExternalMetadata="False"
               version="6">
               <properties>
                 <property
@@ -2232,6 +2409,7 @@ where [refTable].[CurrencyAlternateKey] = ?</property>
               description="OLE DB Source"
               name="Production_Product"
               usesDispositions="true"
+              validateExternalMetadata="False"
               version="7">
               <properties>
                 <property
@@ -2463,6 +2641,7 @@ where [refTable].[CurrencyAlternateKey] = ?</property>
               description="OLE DB Source"
               name="Sales_CurrencyRate"
               usesDispositions="true"
+              validateExternalMetadata="False"
               version="7">
               <properties>
                 <property
@@ -2685,6 +2864,7 @@ where [refTable].[CurrencyAlternateKey] = ?</property>
               description="OLE DB Source"
               name="Sales_SalesOrderDetail"
               usesDispositions="true"
+              validateExternalMetadata="False"
               version="7">
               <properties>
                 <property
@@ -2940,6 +3120,7 @@ where [refTable].[CurrencyAlternateKey] = ?</property>
               description="OLE DB Source"
               name="Sales_SalesOrderHeader"
               usesDispositions="true"
+              validateExternalMetadata="False"
               version="7">
               <properties>
                 <property
@@ -4190,6 +4371,7 @@ ORDER BY SalesOrderID</property>
               description="Runs an SQL statement for each row in a data flow. For example, call a 'new employee setup' stored procedure for each row in the 'new employees' table. Note: running an SQL statement for each row of a large data flow may take a long time."
               name="Update Destination FactSalesOrder"
               usesDispositions="true"
+              validateExternalMetadata="False"
               version="2">
               <properties>
                 <property
@@ -4637,6 +4819,49 @@ ORDER BY SalesOrderID</property>
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
       DTS:ThreadHint="0">
       <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0"
+        DTS:LoggingMode="1">
+        <DTS:Property
+          DTS:DataType="8"
+          DTS:Name="EventFilter">2,7,OnError,9,OnWarning</DTS:Property>
+        <DTS:Property
+          DTS:EventName="OnError"
+          DTS:Name="ColumnFilter">
+          <DTS:Property
+            DTS:Name="Computer">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="Operator">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceName">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="ExecutionID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="MessageText">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="DataBytes">-1</DTS:Property>
+        </DTS:Property>
+        <DTS:Property
+          DTS:EventName="OnWarning"
+          DTS:Name="ColumnFilter">
+          <DTS:Property
+            DTS:Name="Computer">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="Operator">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceName">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="ExecutionID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="MessageText">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="DataBytes">-1</DTS:Property>
+        </DTS:Property>
+      </DTS:LoggingOptions>
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{67FE4213-2F90-4E5E-9037-1935BA370C1C}"
@@ -4653,6 +4878,49 @@ ORDER BY SalesOrderID</property>
       DTS:ObjectName="Load Sales_NewCurencyRate"
       DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
       <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0"
+        DTS:LoggingMode="1">
+        <DTS:Property
+          DTS:DataType="8"
+          DTS:Name="EventFilter">2,7,OnError,9,OnWarning</DTS:Property>
+        <DTS:Property
+          DTS:EventName="OnError"
+          DTS:Name="ColumnFilter">
+          <DTS:Property
+            DTS:Name="Computer">0</DTS:Property>
+          <DTS:Property
+            DTS:Name="Operator">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceName">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="ExecutionID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="MessageText">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="DataBytes">-1</DTS:Property>
+        </DTS:Property>
+        <DTS:Property
+          DTS:EventName="OnWarning"
+          DTS:Name="ColumnFilter">
+          <DTS:Property
+            DTS:Name="Computer">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="Operator">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceName">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="ExecutionID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="MessageText">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="DataBytes">-1</DTS:Property>
+        </DTS:Property>
+      </DTS:LoggingOptions>
       <DTS:EventHandlers>
         <DTS:EventHandler
           DTS:refId="Package\Load Sales_NewCurencyRate.EventHandlers[OnError]"
@@ -4876,6 +5144,7 @@ ORDER BY SalesOrderID</property>
               description="OLE DB Destination"
               name="Load Sales_NewCurencyRate"
               usesDispositions="true"
+              validateExternalMetadata="False"
               version="4">
               <properties>
                 <property
@@ -5381,21 +5650,25 @@ ORDER BY SalesOrderID</property>
       <GraphLayout
         Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="172,42.6666666666667"
-          Id="Package\Load FactSalesOrder\Production_Product"
-          TopLeft="82.2575677854547,78.233335820635" />
+          Size="198.666666666667,42.6666666666667"
+          Id="Package\Load FactSalesOrder\Join SalesOrdersCurrency"
+          TopLeft="636,299.924242424242" />
         <NodeLayout
-          Size="176,42.6666666666667"
-          Id="Package\Load FactSalesOrder\Lookup DIM Product"
-          TopLeft="81.0909092399207,160.683333344956" />
+          Size="177.333333333334,42.6666666666667"
+          Id="Package\Load FactSalesOrder\Lookup DimCurrency"
+          TopLeft="760.272727272727,192.272727272727" />
         <NodeLayout
           Size="194.666666666667,42.6666666666667"
           Id="Package\Load FactSalesOrder\Sales_SalesOrderHeader"
           TopLeft="572.007571417613,82.5000006973742" />
         <NodeLayout
-          Size="173.333333333334,42.6666666666667"
-          Id="Package\Load FactSalesOrder\Sales_CurrencyRate"
-          TopLeft="802.348484848485,86.8181818181818" />
+          Size="156,42.6666666666667"
+          Id="Package\Load FactSalesOrder\Conditional Split"
+          TopLeft="226.363636363636,725.454545454545" />
+        <NodeLayout
+          Size="206.666666666667,42.6666666666667"
+          Id="Package\Load FactSalesOrder\Join SalesOrders &amp; Product"
+          TopLeft="232.455807866604,405.384343399474" />
         <NodeLayout
           Size="188,42.6666666666667"
           Id="Package\Load FactSalesOrder\Sales_SalesOrderDetail"
@@ -5405,17 +5678,13 @@ ORDER BY SalesOrderID</property>
           Id="Package\Load FactSalesOrder\Update Destination FactSalesOrder"
           TopLeft="358,785" />
         <NodeLayout
-          Size="177.333333333334,42.6666666666667"
-          Id="Package\Load FactSalesOrder\Lookup DimCurrency"
-          TopLeft="760.272727272727,192.272727272727" />
+          Size="172,42.6666666666667"
+          Id="Package\Load FactSalesOrder\Production_Product"
+          TopLeft="82.2575677854547,78.233335820635" />
         <NodeLayout
-          Size="198.666666666667,42.6666666666667"
-          Id="Package\Load FactSalesOrder\Join SalesOrdersCurrency"
-          TopLeft="636,299.924242424242" />
-        <NodeLayout
-          Size="158.666666666667,42.6666666666667"
-          Id="Package\Load FactSalesOrder\Calculated Fields"
-          TopLeft="224.876262607637,508.518687903126" />
+          Size="174.666666666667,42.6666666666667"
+          Id="Package\Load FactSalesOrder\Look Up for updates"
+          TopLeft="212.727272727273,600.600000418424" />
         <NodeLayout
           Size="222.666666666667,42.6666666666667"
           Id="Package\Load FactSalesOrder\Sort SalesOrders by ProductID"
@@ -5429,17 +5698,17 @@ ORDER BY SalesOrderID</property>
           Id="Package\Load FactSalesOrder\Join SalesOrders"
           TopLeft="485.590909090909,157.5" />
         <NodeLayout
-          Size="206.666666666667,42.6666666666667"
-          Id="Package\Load FactSalesOrder\Join SalesOrders &amp; Product"
-          TopLeft="232.455807866604,405.384343399474" />
+          Size="173.333333333334,42.6666666666667"
+          Id="Package\Load FactSalesOrder\Sales_CurrencyRate"
+          TopLeft="821.348484848485,81.8181818181818" />
         <NodeLayout
-          Size="174.666666666667,42.6666666666667"
-          Id="Package\Load FactSalesOrder\Look Up for updates"
-          TopLeft="212.727272727273,600.600000418424" />
+          Size="176,42.6666666666667"
+          Id="Package\Load FactSalesOrder\Lookup DIM Product"
+          TopLeft="81.0909092399207,160.683333344956" />
         <NodeLayout
-          Size="156,42.6666666666667"
-          Id="Package\Load FactSalesOrder\Conditional Split"
-          TopLeft="226.363636363636,725.454545454545" />
+          Size="158.666666666667,42.6666666666667"
+          Id="Package\Load FactSalesOrder\Calculated Fields"
+          TopLeft="224.876262607637,508.518687903126" />
         <NodeLayout
           Size="206.666666666667,42.6666666666667"
           Id="Package\Load FactSalesOrder\Destination FactSalesOrder"
@@ -5463,7 +5732,9 @@ ORDER BY SalesOrderID</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -5527,7 +5798,9 @@ ORDER BY SalesOrderID</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -5561,41 +5834,45 @@ ORDER BY SalesOrderID</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Load FactSalesOrder.Paths[OLE DB Source Output3]"
-          TopLeft="889.015151515152,129.484848484848">
+          TopLeft="908.015151515152,124.484848484848">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-40.0757575757578,62.7878787878785"
+              EndConnector="-59.075757575758,67.7878787878785"
               Start="0,0"
-              End="-40.0757575757578,55.2878787878785">
+              End="-59.075757575758,60.2878787878785">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,27.3939393939393" />
+                    End="0,29.8939393939393" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,27.3939393939393"
-                    Point2="0,31.3939393939393"
-                    Point3="-4,31.3939393939393" />
+                    Point1="0,29.8939393939393"
+                    Point2="0,33.8939393939393"
+                    Point3="-4,33.8939393939393" />
                   <mssgle:LineSegment
-                    End="-36.0757575757578,31.3939393939393" />
+                    End="-55.075757575758,33.8939393939393" />
                   <mssgle:CubicBezierSegment
-                    Point1="-36.0757575757578,31.3939393939393"
-                    Point2="-40.0757575757578,31.3939393939393"
-                    Point3="-40.0757575757578,35.3939393939393" />
+                    Point1="-55.075757575758,33.8939393939393"
+                    Point2="-59.075757575758,33.8939393939393"
+                    Point3="-59.075757575758,37.8939393939393" />
                   <mssgle:LineSegment
-                    End="-40.0757575757578,55.2878787878785" />
+                    End="-59.075757575758,60.2878787878785" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -5617,7 +5894,9 @@ ORDER BY SalesOrderID</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -5651,7 +5930,9 @@ ORDER BY SalesOrderID</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -5685,7 +5966,9 @@ ORDER BY SalesOrderID</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -5719,7 +6002,9 @@ ORDER BY SalesOrderID</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -5753,7 +6038,9 @@ ORDER BY SalesOrderID</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -5787,7 +6074,9 @@ ORDER BY SalesOrderID</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -5810,7 +6099,7 @@ ORDER BY SalesOrderID</property>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-57.0600390625,29.3439391847272,114.120078125,16"
+              BoundingBox="-48.19138671875,31.5392516847272,96.3827734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -5846,7 +6135,7 @@ ORDER BY SalesOrderID</property>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="18.6021737057028,125.289333771256,96.3827734375,11.609375"
+              BoundingBox="18.602173705703,125.289333771256,96.3827734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -5932,37 +6221,6 @@ ORDER BY SalesOrderID</property>
     </LayoutInfo>
   </DtsEventHandler>
   <PipelineComponentMetadata
-    design-time-name="Package\Load FactSalesOrder\Production_Product">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Load FactSalesOrder\Lookup DIM Product">
-    <Properties>
-      <Property>
-        <Name>UsedTableName</Name>
-        <Value
-          type="q2:string"></Value>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q3:string">0</Value>
-      </Property>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>OverwriteParamsSQLProp</Name>
-        <Value
-          type="q4:string">false</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
     design-time-name="Package\Load FactSalesOrder\Sales_SalesOrderHeader">
     <Properties>
       <Property>
@@ -5972,6 +6230,14 @@ ORDER BY SalesOrderID</property>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
     design-time-name="Package\Load FactSalesOrder\Sales_SalesOrderDetail">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load FactSalesOrder\Production_Product">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -6002,6 +6268,29 @@ ORDER BY SalesOrderID</property>
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
+    design-time-name="Package\Load FactSalesOrder\Lookup DIM Product">
+    <Properties>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q2:string"></Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q3:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q4:string">false</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
     design-time-name="Package\Load FactSalesOrder\Destination FactSalesOrder">
     <Properties>
       <Property>
@@ -6018,15 +6307,15 @@ ORDER BY SalesOrderID</property>
     design-time-name="Package\Load Sales_NewCurencyRate">
     <LayoutInfo>
       <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
-        <NodeLayout
-          Size="282.666666666667,42.6666666666667"
-          Id="Package\Load Sales_NewCurencyRate\read exchange rates from downloaded CSV"
-          TopLeft="452.499993257225,93.5999983263016" />
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="216,42.6666666666667"
           Id="Package\Load Sales_NewCurencyRate\Load Sales_NewCurencyRate"
           TopLeft="476.249992903322,312.649994409382" />
+        <NodeLayout
+          Size="282.666666666667,42.6666666666667"
+          Id="Package\Load Sales_NewCurencyRate\read exchange rates from downloaded CSV"
+          TopLeft="452.499993257225,93.5999983263016" />
         <NodeLayout
           Size="152,42.6666666666667"
           Id="Package\Load Sales_NewCurencyRate\Fix Field Values"
@@ -6062,7 +6351,9 @@ ORDER BY SalesOrderID</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -6084,7 +6375,9 @@ ORDER BY SalesOrderID</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
