@@ -61,4 +61,46 @@ Make sure you provide the `ProjectPath`, which is the path of the directory of t
 > While opening the package `Load FactSalesOrder.dtsx` for the first time it might raise an *ERROR MESSAGE*. Continue opening the package and provide the Package Parameters. It will fix the error 
 
 
+## How Package Works
+Once package is configured and Package Parameters have the new system value, the package can be triggered by click `Start` (or press `F5`). The package has ***4 Control Flow tasks***. Each task performs its functionality. 
+
+#### Get exchange rates from API
+The taks calls a powershell script to fetch the exchanges rates from Web - https://exchangeratesapi.io/ and loads it into a csv file. The api call is driven with variables like
+- `startDate`
+- `endData` 
+- `base` currency 
+- `symbol` as required required currency 
+
+
+> ***Alternate ways of getting the exchange rate*** could be
+> 1. Use **Script Task** and writing C# or VB in  *.Net Framework* to fetch the exchange rate through WebClient and then loading it into the table.
+> 2. Use **Web Service Task** to call the WebAPI and store the output in the file. This method require to *download WSDL(Web Service Definition Language)* from the Web source.  
+
+#### Load Sales_NewCurencyRate
+This task loads the currency rates from the Flat File downloaded from the above task and then transforms the data to proper data types and load it into newly created table `AdventureWorks2016.Sales.NewCurencyRate` in the OLTP database. 
+
+#### Load New FXRates into FactCurrencyRate
+This task contains a SQL Script. The purpose to using this task it to bring proper structures information for the enchangerate. 
+
+>The ***issue with the exchangerate coming from the WebAPI*** is that exchange rate are not continuous and some of the days are missing. So, the script load the exchange rate for all the relevant date while filling the the previous days exchange rate in case it is missing.
+
+#### Load FactSalesOrder
+This is most important data flow task of the package, where the data is read from `Sales.SalesOrderDetail` and `Sales.SalesOrderHeader` to retrive the Order details. Using the SalesOrders,  a new Fact table is loaded `AdventureWorksDW2016.dbo.FactSalesOrders`. This fact table recieves the Keys from DimProduct and DimCurrency and some derived columns that calculated a few of the required fact information.
+
+## Additional Features
+A few of the additional feature are added to the package for better usage.
+
+### Event Handler
+An event handler **onPreValidation** of the task `Load FactSalesOrder`and `Load Sales_NewCurencyRate` are added to avoid failure becasue the task within these event handler will `Check if the require table exists and accordingly creates the table`.
+![EventHandler]()
+
+### Logging OnFailure & OnWarning
+Logging mechanism is enabled to allow log the failures and the warning on any of the tasks.
+
+### Allow ONLY latest records and Decide to Insert Or Update record
+The source components in task `Load FactSalesOrder` *determines the records that are NOT process* and allow those ONLY to flow through the data flow task. Also the Lookup with the destination table allow the package to decide whether `the record New record (therefore Insert)` OR is `an existing record (therefore Update)`
+
+
+
+
 
