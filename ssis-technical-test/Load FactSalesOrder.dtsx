@@ -11,8 +11,8 @@
   DTS:LocaleID="2057"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="90"
-  DTS:VersionGUID="{BFD101C3-6340-4D41-993D-783A8F589F45}">
+  DTS:VersionBuild="91"
+  DTS:VersionGUID="{8A58A855-0095-4C7E-B20A-5F305D0C5053}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -87,11 +87,11 @@
             <DTS:Property
               DTS:Name="ServerPassword"
               Sensitive="1"
-              Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAACVorAh014USZV58ypYMh9gAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAAC5lK55zcLZs1B52GgBFNgryO0vrM4F2Z1V4/7XRIFSWwAAAAAOgAAAAAIAACAAAADP260HYhpaQhVL7yDCdsmYfyvgU2Su0vizYk8yI/83FxAAAABZCL2QEv0pB8cbkmyARr/IQAAAAO0XpGzZSdK++xNh7byki4RXjV2jVaOl5kKuzbQVLZ76pS+/nSRSkWJHxc//kAjWnET3iBzrM/pnnryQPKU9GhQ</DTS:Property>
+              Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAACVorAh014USZV58ypYMh9gAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAAAyvQdr54AtIJNXJDcUWMS3LEt8e9LXtkD3mmDwzeU+3wAAAAAOgAAAAAIAACAAAADKT4hprpcz70roGmWx9GXmF9dg6u+s2Fr028gG91UuKhAAAABZhoRLYW2OLVdtndvqfm4JQAAAAFTjOMTKVxwzMsf2q2nJOY+CyQ2fiuWT/1zoxPcQBbVHkwkJmHZ29KRecKXTE66mj9Wmy3eSHtTB0cHPCHcUPwc</DTS:Property>
             <DTS:Property
               DTS:Name="ProxyPassword"
               Sensitive="1"
-              Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAACVorAh014USZV58ypYMh9gAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAACgc/G3jEWfM69Gpv6ci/FdZopFaitparzH+tcYJLKubwAAAAAOgAAAAAIAACAAAACn5OshO0S6USERCIcD3EytRPMspUzu4EFyH/C77VRx5xAAAAAJdx/vGMoz9rGeOygHsLVsQAAAADcsI9yqZyxxS8/JIhpPFwTenFKNUZeZxh7B0Y8svYPZuMrWdzcbOiiskhgWXxQVE0uMRvNqLli7IyiV4y9dhUY</DTS:Property>
+              Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAACVorAh014USZV58ypYMh9gAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAADFlqgc7j1ZhzCQX7yejUyyvev4LtiG2V+VTUX7aXjaVgAAAAAOgAAAAAIAACAAAAA+770rqlbzwLTfZ6L+fNns53BTdm7OLTYEVLbWO+nzshAAAACAg+E9t1oiKBvOYczFK3B7QAAAANFv2DbdNRbo2opmsLQPT02rSdFfOQyWe0kR6Ls/8BH688e4fyXYD/A7sLK34N+p4+P8rR/lbEDrnhM1fCkDXgU</DTS:Property>
           </DTS:HttpConnection>
         </DTS:ConnectionManager>
       </DTS:ObjectData>
@@ -139,7 +139,7 @@ RIGHT("0" + (DT_WSTR,2)DATEPART("mi",GetDate()),2) + ".xml"</DTS:PropertyExpress
       <DTS:ObjectData>
         <DTS:ConnectionManager
           DTS:FileUsageType="1"
-          DTS:ConnectionString="C:\Users\NimishN\source\repos\ssis-technical-test\logs\log_20210121_1720.xml" />
+          DTS:ConnectionString="C:\Users\NimishN\source\repos\ssis-technical-test\logs\log_20210121_1744.xml" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
   </DTS:ConnectionManagers>
@@ -5305,6 +5305,7 @@ ORDER BY SalesOrderID</property>
               localeId="2057"
               name="read exchange rates from downloaded CSV"
               usesDispositions="true"
+              validateExternalMetadata="False"
               version="1">
               <properties>
                 <property
@@ -6307,7 +6308,7 @@ ORDER BY SalesOrderID</property>
     design-time-name="Package\Load Sales_NewCurencyRate">
     <LayoutInfo>
       <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="216,42.6666666666667"
           Id="Package\Load Sales_NewCurencyRate\Load Sales_NewCurencyRate"
@@ -6351,9 +6352,7 @@ ORDER BY SalesOrderID</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -6375,9 +6374,7 @@ ORDER BY SalesOrderID</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
