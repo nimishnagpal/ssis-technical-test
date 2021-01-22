@@ -11,8 +11,8 @@
   DTS:LocaleID="2057"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="91"
-  DTS:VersionGUID="{8A58A855-0095-4C7E-B20A-5F305D0C5053}">
+  DTS:VersionBuild="93"
+  DTS:VersionGUID="{A911DDF0-0DA1-42AB-B537-5F2304AC41C8}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -87,11 +87,11 @@
             <DTS:Property
               DTS:Name="ServerPassword"
               Sensitive="1"
-              Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAACVorAh014USZV58ypYMh9gAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAAAyvQdr54AtIJNXJDcUWMS3LEt8e9LXtkD3mmDwzeU+3wAAAAAOgAAAAAIAACAAAADKT4hprpcz70roGmWx9GXmF9dg6u+s2Fr028gG91UuKhAAAABZhoRLYW2OLVdtndvqfm4JQAAAAFTjOMTKVxwzMsf2q2nJOY+CyQ2fiuWT/1zoxPcQBbVHkwkJmHZ29KRecKXTE66mj9Wmy3eSHtTB0cHPCHcUPwc</DTS:Property>
+              Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAACVorAh014USZV58ypYMh9gAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAAB0NFnlKvPYAehkZCfnUPu4MYRG+cZ/myZNpKqcEx++iAAAAAAOgAAAAAIAACAAAABFZ0WgEZWwY79RVaI4ZcC+HD4TBxYf0jLPtrckaYdAShAAAAA1bhHKes7G3v+ll72cZNZwQAAAAHDuaTAOvSZw74XpS5t2KPIn/avg6RbE2vYhzTK/UldBtyCopSr4lw8tPDHgjf5Yc9BLc5erqEhGiQ33B1dqaEY</DTS:Property>
             <DTS:Property
               DTS:Name="ProxyPassword"
               Sensitive="1"
-              Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAACVorAh014USZV58ypYMh9gAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAADFlqgc7j1ZhzCQX7yejUyyvev4LtiG2V+VTUX7aXjaVgAAAAAOgAAAAAIAACAAAAA+770rqlbzwLTfZ6L+fNns53BTdm7OLTYEVLbWO+nzshAAAACAg+E9t1oiKBvOYczFK3B7QAAAANFv2DbdNRbo2opmsLQPT02rSdFfOQyWe0kR6Ls/8BH688e4fyXYD/A7sLK34N+p4+P8rR/lbEDrnhM1fCkDXgU</DTS:Property>
+              Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAACVorAh014USZV58ypYMh9gAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAACEW8Yv8eUtX5kTe1lA+oHRM5Q33G1H7Jd3Tp+kkKtS9QAAAAAOgAAAAAIAACAAAACxh+Ky32lQ0FIDynzTWceAIoaw4IG3cbe0DgB/0VqA+hAAAABC+m8gvDHhTub7pAdO3KRJQAAAAJA5DxPuigotIF7saeDz17TLy7Z+zdJwwgQkCIs9PJje4L7NVd7nR835FlHjk+QjVOoKcQ7YX/UzJxgYXrnXtWI</DTS:Property>
           </DTS:HttpConnection>
         </DTS:ConnectionManager>
       </DTS:ObjectData>
@@ -139,7 +139,7 @@ RIGHT("0" + (DT_WSTR,2)DATEPART("mi",GetDate()),2) + ".xml"</DTS:PropertyExpress
       <DTS:ObjectData>
         <DTS:ConnectionManager
           DTS:FileUsageType="1"
-          DTS:ConnectionString="C:\Users\NimishN\source\repos\ssis-technical-test\logs\log_20210121_1744.xml" />
+          DTS:ConnectionString="C:\Users\NimishN\source\repos\ssis-technical-test\logs\log_20210121_2039.xml" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
   </DTS:ConnectionManagers>
@@ -223,7 +223,7 @@ RIGHT("0" + (DT_WSTR,2)DATEPART("mi",GetDate()),2) + ".xml"</DTS:PropertyExpress
       DTS:Namespace="User"
       DTS:ObjectName="fx_endDate">
       <DTS:VariableValue
-        DTS:DataType="8">2018-01-01</DTS:VariableValue>
+        DTS:DataType="8">2011-01-01</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
@@ -232,7 +232,7 @@ RIGHT("0" + (DT_WSTR,2)DATEPART("mi",GetDate()),2) + ".xml"</DTS:PropertyExpress
       DTS:Namespace="User"
       DTS:ObjectName="fx_startdate">
       <DTS:VariableValue
-        DTS:DataType="8">2018-11-01</DTS:VariableValue>
+        DTS:DataType="8">2015-11-01</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
@@ -319,11 +319,11 @@ RIGHT("0" + (DT_WSTR,2)DATEPART("mi",GetDate()),2) + ".xml"</DTS:PropertyExpress
         </DTS:Property>
       </DTS:LoggingOptions>
       <DTS:PropertyExpression
-        DTS:Name="Arguments">"-ExecutionPolicy Bypass -File \"" + @[User::GetFXRatePath] + "\""</DTS:PropertyExpression>
+        DTS:Name="Arguments">"-ExecutionPolicy Bypass -File \"" + @[User::GetFXRatePath] + "\" \"" + @[User::fx_startdate] +  "\" \"" + @[User::fx_endDate] +  "\" \""  + @[User::fx_base] +  "\" \""  +  @[User::fx_symbol]</DTS:PropertyExpression>
       <DTS:ObjectData>
         <ExecuteProcessData
           Executable="powershell.exe"
-          Arguments="-ExecutionPolicy Bypass -File &quot;C:\Users\NimishN\source\repos\ssis-technical-test\GetFXRate.ps1&quot;"
+          Arguments="-ExecutionPolicy Bypass -File &quot;C:\Users\NimishN\source\repos\ssis-technical-test\GetFXRate.ps1&quot; &quot;2015-11-01&quot; &quot;2011-01-01&quot; &quot;USD&quot; &quot;NZD"
           FailTaskIfReturnCodeIsNotSuccessValue="False" />
       </DTS:ObjectData>
     </DTS:Executable>

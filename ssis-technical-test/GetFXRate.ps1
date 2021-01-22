@@ -1,8 +1,8 @@
 
-$start_at = "2011-01-01" #$args[0]
-$end_at = "2015-01-01" #$args[1]
-$base = "USD"
-$symbols = "NZD"
+$start_at = $args[0] #"2011-01-01" 
+$end_at = $args[1] # "2015-01-01" 
+$base = $args[3] #"USD"
+$symbols = $args[4] #"NZD"
 $fxrate =  (Invoke-RestMethod -Method GET -Uri "https://api.exchangeratesapi.io/history?start_at=$start_at&end_at=$end_at&base=$base&&symbols=$symbols").rates;
 # $fxrate |Select-Object -First 1
 
