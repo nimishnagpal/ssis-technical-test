@@ -15,30 +15,30 @@
       </ul>
     </li>
     <li>
-      <a href="#How package works?">How package works?</a>
+      <a href="#how-package-works?">How package works?</a>
       <ul>
-        <li><a href="#Get exchange rates from API">Get exchange rates from API</a></li>
-        <li><a href="#Load Sales_NewCurencyRate">Load Sales_NewCurencyRate</a></li>
-        <li><a href="#Load New FXRates into FactCurrencyRate">Load New FXRates into FactCurrencyRate</a></li>
-        <li><a href="#Load FactSalesOrder">Load FactSalesOrder</a></li>
+        <li><a href="#get-exchange-rates-from-api">Get exchange rates from API</a></li>
+        <li><a href="#load-sales_sewcurencyrate">Load Sales_NewCurencyRate</a></li>
+        <li><a href="#load-new-fxrates-into-factcurrencyrate">Load New FXRates into FactCurrencyRate</a></li>
+        <li><a href="#load-factsalesorder">Load FactSalesOrder</a></li>
       </ul>
     </li>
     <li>
-      <a href="#Additional Features">Additional Features</a>
+      <a href="#additional-features">Additional Features</a>
       <ul>
-        <li><a href="#Event Handler">Event Handler</a></li>
-        <li><a href="#Logging OnFailure & OnWarning">Logging OnFailure & OnWarning</a></li>
-        <li><a href="#Allow ONLY latest records and Decide to Insert Or Update record">Allow ONLY latest records and Decide to Insert Or Update record</a></li>
+        <li><a href="#event-handler">Event Handler</a></li>
+        <li><a href="#logging-onfailure-&-onwarning">Logging OnFailure & OnWarning</a></li>
+        <li><a href="#allow-only-latest-records-and-decide-to-insert-or-update-record">Allow ONLY latest records and Decide to Insert Or Update record</a></li>
       </ul>
     </li>
     <li>
-      <a href="#How your solution could be made better">How your solution could be made better</a>
+      <a href="#how-your-solution-could-be-made-better">How your solution could be made better</a>
       <ul>
-        <li><a href="#Data Validation">Data Validation</a></li>
-        <li><a href="#Sending out email notification">Sending out email notification</a></li>
-        <li><a href="#Error Handling">Error Handling</a></li>
-        <li><a href="#Checkpoint in lengthy ETL flow">Checkpoint in lengthy ETL flow</a></li>
-        <li><a href="#Applying Indexing in SQL Table">Applying Indexing in SQL Table</a></li>
+        <li><a href="#data-Validation">Data Validation</a></li>
+        <li><a href="#sending-out-email-notification">Sending out email notification</a></li>
+        <li><a href="#rrror-handling">Error Handling</a></li>
+        <li><a href="#checkpoint-in-lengthy-etl-flow">Checkpoint in lengthy ETL flow</a></li>
+        <li><a href="#applying-indexing-in-sql-table">Applying Indexing in SQL Table</a></li>
       </ul>
     </li>
   </ol>
@@ -112,7 +112,7 @@ A few of the additional features are added to the package for better usage as li
 #### Event Handler
 An event handler **onPreValidation** of the task `Load FactSalesOrder`and `Load Sales_NewCurencyRate` are added to avoid failure because the task within these event handlers will `Check if the required table exists and accordingly creates the table`.
 
-![EventHandler]()
+![EventHandler](https://github.com/NimNagpal/Daemon/blob/master/screenshots/eventHandler.png)
 
 #### Logging OnFailure & OnWarning
 Logging mechanism is enabled to allow to log the failures and the warning on any of the tasks.
