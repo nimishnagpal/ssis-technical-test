@@ -81,6 +81,7 @@ Make sure you provide the `ProjectPath`, which is the path of the directory of t
 
 ## How package works? 
 > The ETL flow is based on my assumption of the data. Each assumption is reasoned below.
+
 Once the package is configured and Package Parameters have the new system value, the package can be triggered by clicking `Start` (or press `F5`). The package has ***4 Control Flow tasks***. Each task performs its functionality. 
 
 #### Get exchange rates from API
@@ -121,7 +122,7 @@ Logging mechanism is enabled to allow to log the failures and the warning on any
 The source components in task `Load FactSalesOrder` *determines the records that are NOT processed* and allow ONLY those to flow through the data flow task. Also the Lookup with the destination table allows the package to decide whether `the record is a New record (therefore Insert)` OR is `an existing record (therefore Update)`
 
 ## How your solution could be made better
-There could be a variety of areas that can be improved if I think of this as a real business case. In a real business scenario, the details at the level of understanding the problem and the way to answer could be a lot different. Thinking about some of the possible option are listed below:
+There could be a variety of areas that can be improved if I think of this as a real business case. In a real business scenario, the details at the level of understanding the problem and the way to answer could be a lot different. Thinking about some of the possible options are listed below:
 
 #### Data Validation
 When the data moves from the source system to data warehouse, it is recommended to perform the data validations. Although, in the current situation there is only one source and the data in the AdventureWorks database is uniform. Otherwise, in case of multiple source systems, it is important to validate the fields for correct data type values, NULL values, data ranges, etc. 
