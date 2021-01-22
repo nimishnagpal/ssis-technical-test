@@ -6,23 +6,41 @@
   <ol>
     <li>
       <a href="#about-the-project">About The Project</a>
-      <ul>
-        <li><a href="#built-with">Built With</a></li>
-      </ul>
+      <ul><li><a href="#built-with">Built With</a></li></ul>
     </li>
     <li>
       <a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Configure The Solution</a></li>
+      <ul><li><a href="#prerequisites">Prerequisites</a></li>
+          <li><a href="#Configure The Solution">Configure The Solution</a></li>
       </ul>
     </li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgements">Acknowledgements</a></li>
+    <li>
+      <a href="#How package works?">How package works?</a>
+      <ul>
+        <li><a href="#Get exchange rates from API">Get exchange rates from API</a></li>
+        <li><a href="#Load Sales_NewCurencyRate">Load Sales_NewCurencyRate</a></li>
+        <li><a href="#Load New FXRates into FactCurrencyRate">Load New FXRates into FactCurrencyRate</a></li>
+        <li><a href="#Load FactSalesOrder">Load FactSalesOrder</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#Additional Features">Additional Features</a>
+      <ul>
+        <li><a href="#Event Handler">Event Handler</a></li>
+        <li><a href="#Logging OnFailure & OnWarning">Logging OnFailure & OnWarning</a></li>
+        <li><a href="#Allow ONLY latest records and Decide to Insert Or Update record">Allow ONLY latest records and Decide to Insert Or Update record</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#How your solution could be made better">How your solution could be made better</a>
+      <ul>
+        <li><a href="#Data Validation">Data Validation</a></li>
+        <li><a href="#Sending out email notification">Sending out email notification</a></li>
+        <li><a href="#Error Handling">Error Handling</a></li>
+        <li><a href="#Checkpoint in lengthy ETL flow">Checkpoint in lengthy ETL flow</a></li>
+        <li><a href="#Applying Indexing in SQL Table">Applying Indexing in SQL Table</a></li>
+      </ul>
+    </li>
   </ol>
 </details>
 
@@ -61,7 +79,8 @@ Make sure you provide the `ProjectPath`, which is the path of the directory of t
 > While opening the package `Load FactSalesOrder.dtsx` for the first time it might raise an *ERROR MESSAGE*. Continue opening the package and provide the Package Parameters. It will fix the error 
 
 
-## How package works?
+## How package works? 
+> The ETL flow is based on my assumption of the data. Each assumption is reasoned below.
 Once the package is configured and Package Parameters have the new system value, the package can be triggered by clicking `Start` (or press `F5`). The package has ***4 Control Flow tasks***. Each task performs its functionality. 
 
 #### Get exchange rates from API
@@ -90,37 +109,37 @@ This is the most important data flow task of the package, where the data is read
 ## Additional Features
 A few of the additional features are added to the package for better usage as listed.
 
-### Event Handler
+#### Event Handler
 An event handler **onPreValidation** of the task `Load FactSalesOrder`and `Load Sales_NewCurencyRate` are added to avoid failure because the task within these event handlers will `Check if the required table exists and accordingly creates the table`.
 
 ![EventHandler]()
 
-### Logging OnFailure & OnWarning
+#### Logging OnFailure & OnWarning
 Logging mechanism is enabled to allow to log the failures and the warning on any of the tasks.
 
-### Allow ONLY latest records and Decide to Insert Or Update record
+#### Allow ONLY latest records and Decide to Insert Or Update record
 The source components in task `Load FactSalesOrder` *determines the records that are NOT processed* and allow ONLY those to flow through the data flow task. Also the Lookup with the destination table allows the package to decide whether `the record is a New record (therefore Insert)` OR is `an existing record (therefore Update)`
 
 ## How your solution could be made better
-There could a variety of area that can be improved if I think of this as a real business case. In a real business scenario, the details at the level of understand the problem and the way to answer could be a lot. Thinking about some of the possible option are listed below.
+There could be a variety of areas that can be improved if I think of this as a real business case. In a real business scenario, the details at the level of understanding the problem and the way to answer could be a lot different. Thinking about some of the possible option are listed below:
 
 #### Data Validation
-When the data moves from the source system to data warehouse, it is recommended to perform the data validations. Although, in the current situation there is only one source and the AdventureWork data is uniform.Otherwise, in case of multiple source systems, it is important to validate the fields for correct data types values, NULL values, data ranges, etc. 
+When the data moves from the source system to data warehouse, it is recommended to perform the data validations. Although, in the current situation there is only one source and the data in the AdventureWorks database is uniform. Otherwise, in case of multiple source systems, it is important to validate the fields for correct data type values, NULL values, data ranges, etc. 
 
 #### Sending out email notification
-The email notification can be useful to
-- some business needs, so as to notify when that data is avaiable for the use of the stakeholders
+The email notification can be useful to:
+- some business needs, so as to notify when that data is available to use for the stakeholders
 - and to warn operations(internal teams), about any warnings or failures.
-Email can be triggerred from as Event Handler or within the control flow.
+Email can be triggerred from the Event Handlers or within the control flow.
 
 #### Error Handling
 Error handling is quite important concept to avoid data loss. In case of data discrepancy, that flow can be directed toward Error Handling tasks and such scenarios can be handled without interrupting the complete flow.
 
 #### Checkpoint in lengthy ETL flow
-The checkpoint comes handy with the lengthy and time taking Flow, because in such scenario checkpoints of the package execution can be saved and can allow to restart the package  from the failed checkpoint. This could save unnessary re-processing, time and resources on the execution of a package.
+The checkpoint comes handy for the lengthy and time taking Flow, because in such scenario checkpoints of the package execution can be saved and can allow to restart the package  from the failed checkpoint. This could save unnecessary re-processing, time and resources on the execution of a package.
 
 #### Applying Indexing in SQL Table
-Additionally, applying indecies on the Dim & Fact Table can help business in fetching results faster. But, it is important to be aware of the limitation that an Index on table also slow down the Insert/Update process thus affect SSIS packages.  
+Additionally, applying indexes on the Dim & Fact Table can help business in fetching results faster. But, it is important to be aware of the limitation that an Index on table also slows down the Insert/Update process thus affect SSIS packages.  
 
 
 
