@@ -19,6 +19,8 @@ WITH NewFactCurrencyRate AS (SELECT New_fcr.DateKey, New_fcr.AverageRate
                 dbo.FactCurrencyRate AS fcr ON fcr.CurrencyKey = fso.CurrencyKey AND fcr.DateKey = fso.OrderDateKey LEFT OUTER JOIN
                 NewFactCurrencyRate AS New_fcr ON fcr.DateKey = fso.OrderDateKey
    GROUP BY YEAR(fso.OrderDate), dp.Color
+
+
 GO
 
 
